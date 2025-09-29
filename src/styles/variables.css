@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+    /* 🎨 Cores principais */
+    --color-verde-principaç: #A1C168;
+    --color-verde-escuro: #405F39;
+    --color-verde-claro: #E6E3B5;
+    --color-background: #F9F9F9;
+    --color-text: #405F39;
+    --color-black:#1B1B1B;
+  
+    /* 🖋️ Fontes */
+    --font-main: "Inter", sans-serif;
+    --font-title: "Forum    ", sans-serif;
+  
+    /* 🌗 Outros */
+    --border-radius: 8px;
+    --transition-speed: 0.3s;
+  }
+  

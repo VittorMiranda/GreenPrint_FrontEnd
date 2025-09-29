@@ -1,0 +1,29 @@
+.navbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #A1C168;
+    height: 4rem;   
+     
+}
+
+.logo, .menu_aconut {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 1em;
+}
+
+.logo img {
+    width: 60px;
+}
+
+.logo span {
+    font-size: 2em;
+    color: aliceblue;
+}
+
+
+
+
