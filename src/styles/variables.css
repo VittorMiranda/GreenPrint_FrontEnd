@@ -2,7 +2,7 @@
 
 :root {
     /* 🎨 Cores principais */
-    --color-verde-principaç: #A1C168;
+    --color-verde-principal: #A1C168;
     --color-verde-escuro: #405F39;
     --color-verde-claro: #E6E3B5;
     --color-background: #F9F9F9;
@@ -11,7 +11,7 @@
   
     /* 🖋️ Fontes */
     --font-main: "Inter", sans-serif;
-    --font-title: "Forum    ", sans-serif;
+    --font-title: "Forum", sans-serif;
   
     /* 🌗 Outros */
     --border-radius: 8px;

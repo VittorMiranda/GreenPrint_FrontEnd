@@ -1,29 +1,70 @@
+@import "../../styles/variables.css";
+
 .navbar {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #A1C168;
-    height: 4rem;   
-     
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--color-verde-principal);
+  height: 4rem;
+  padding: 0 1.5rem;
+  position: relative;
+  font-family: var( --font-main);
 }
 
-.logo, .menu_aconut {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin: 1em;
+.logo,
+.menu_acount {
+  display: flex;
+  align-items: center;
 }
 
 .logo img {
-    width: 60px;
+  width: 60px;
 }
 
 .logo span {
-    font-size: 2em;
-    color: aliceblue;
+  font-size: 2em;
+  color: var(--color-text);
 }
 
+.menu_acount img {
+  width: 28px;
+  margin-left: 1rem;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
 
+.menu_acount img:hover {
+  opacity: 0.8;
+}
+
+/* Menu sempre escondido inicialmente */
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 4rem;
+  right: 0;
+  width: 200px;
+  background-color: var(--color-verde-principal);
+  padding: 1rem;
+  border-radius: 0 0 0 10px;
+  box-shadow: -2px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.mobile-menu a {
+  color: var(--color-text);
+  text-decoration: underline;
+  margin: 0.8rem 0;
+  font-size: 1.1rem;
+  transition: opacity 0.2s ease;
+}
+
+.mobile-menu a:hover {
+  color: var(--color-background);
+}
+
+.mobile-menu.open {
+  display: flex;
+}
 
 

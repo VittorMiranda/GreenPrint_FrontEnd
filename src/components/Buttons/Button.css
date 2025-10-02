@@ -1,0 +1,26 @@
+@import "../../styles/variables.css";
+/* Botão principal */
+.button {
+    min-width: 20%;
+    background-color: var(--color-verde-principal);
+    color: var(--color-text);
+    font-family: var(--font-main);
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    padding: 0.6rem 1.2rem;
+    margin: 1rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.button:hover{
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+    color: var(--color-background);
+}
+
+
+  
