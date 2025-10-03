@@ -1,0 +1,59 @@
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 450px;
+  margin: 2rem auto;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-images {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s ease-in-out; /* slide suave */
+}
+
+.carousel-images img {
+  min-width: 100%; /* cada imagem ocupa 100% do container */
+  height: 100%;
+  object-fit: contain; /* mantém proporção da imagem */
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background-color: rgba(255,255,255,0.3);
+  color: var(--color-verde-principal);
+  font-size: 2rem;
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 50%;
+}
+
+.carousel-btn.left { left: 10px; }
+.carousel-btn.right { right: 10px; }
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.dot {
+  height: 10px;
+  width: 10px;
+  background-color: var(--color-verde-escuro);
+  border-radius: 50%;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.dot.active {
+  background-color: var(--color-verde-principal);
+}

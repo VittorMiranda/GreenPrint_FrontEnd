@@ -1,11 +1,7 @@
-import Navbar from "../components/NavBar/NavBar";
-
-export default function PrivateLayout({ children }) {
+export default function PrivateLayout({ user, children }) {
   return (
     <div>
-      <main>
-        {children}
-      </main>
+      <main>{children}</main>
     </div>
   );
 }

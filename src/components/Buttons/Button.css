@@ -1,7 +1,7 @@
 @import "../../styles/variables.css";
 /* Botão principal */
 .button {
-    min-width: 20%;
+    width: 200px;
     background-color: var(--color-verde-principal);
     color: var(--color-text);
     font-family: var(--font-main);

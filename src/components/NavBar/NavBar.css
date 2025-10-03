@@ -49,6 +49,8 @@
   padding: 1rem;
   border-radius: 0 0 0 10px;
   box-shadow: -2px 4px 10px rgba(0, 0, 0, 0.2);
+
+  z-index: 9999;
 }
 
 .mobile-menu a {
