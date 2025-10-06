@@ -3,6 +3,7 @@ import Home from "../pages/public/Home";
 import Dashboard from "../pages/private/Dashboard";
 import PrivateLayout from "../layouts/PrivateLayout";
 import Account from "../pages/private/Account";
+import Produto from "../pages/public/Produto";
 
 // Componente para rotas privadas
 function PrivateRoute({ user, children }) {
@@ -21,6 +22,8 @@ export default function AppRouter() {
       <Routes>
         {/* Rota pública */}
         <Route path="/" element={<Home />} />
+        {/* Rota de produto com parâmetro dinâmico */}
+        <Route path="/produto/:id" element={<Produto />} />
 
         {/* Rotas privadas */}
         <Route
@@ -47,6 +50,7 @@ export default function AppRouter() {
         {/* Redirecionamento para home se nenhuma rota bater */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
+
     </BrowserRouter>
   );
 }

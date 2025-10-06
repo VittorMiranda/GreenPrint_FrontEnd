@@ -1,0 +1,55 @@
+@import "../../styles/variables.css";
+
+.product-card {
+    width: 300px;
+    border: solid 0.2em var(--color-text);
+    border-radius: 6px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    background-color: var(--color-background);
+    transition: transform 0.3s ease;
+    margin: 0.5em;
+}
+
+.product-link {
+    text-decoration: none;
+}
+
+.product-card:hover {
+    transform: scale(1.03);
+}
+
+/* === Imagem estática === */
+.image-container {
+    width: 100%;
+    height: 200px;
+    background-color: var(--color-background);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* === Informações === */
+.product-info {
+    padding: 1rem;
+    text-align: center;
+    background-color: var(--color-verde-principal);
+}
+
+.product-info h3 {
+    color: var(--color-text);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.product-info p {
+    margin: 4px 0;
+    color: var(--color-black);
+    font-size: 0.95rem;
+}

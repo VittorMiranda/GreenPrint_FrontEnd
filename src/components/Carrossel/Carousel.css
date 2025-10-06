@@ -1,3 +1,8 @@
+@import "../../styles/variables.css";
+
+/* ======================== */
+/* === CARROSSEL PRINCIPAL */
+/* ======================== */
 .carousel {
   position: relative;
   width: 100%;
@@ -56,4 +61,51 @@
 
 .dot.active {
   background-color: var(--color-verde-principal);
+}
+
+/* ======================== */
+/* === CARROSSEL PEQUENO  === */
+/* ======================== */
+.carousel-pequeno {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.carousel-thumbnails {
+  display: flex;
+  gap: 0.3rem;
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+}
+
+.carousel-thumbnails::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+.carousel-thumbnails img {
+  max-width: 6em;      /* miniatura pequena */
+  max-height: 6em;
+  object-fit: cover;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.2s, border 0.2s, opacity 0.2s;
+  opacity: 0.6;
+  border: 2px solid transparent;
+}
+
+.carousel-thumbnails img.active {
+  border-color: var(--color-verde-principal);
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+.carousel-btn {
+  font-size: 1.5rem;
+  padding: 0.2rem 0.5rem;
+  background-color: rgba(255, 255, 255, 0.3);
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
 }
