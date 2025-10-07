@@ -50,6 +50,6 @@
 
 .product-info p {
     margin: 4px 0;
-    color: var(--color-black);
+    color: var(--color-background);
     font-size: 0.95rem;
 }

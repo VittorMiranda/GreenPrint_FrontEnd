@@ -1,0 +1,66 @@
+@import "../styles/variables.css";
+.home {
+    font-family: var(--font-main);
+    color: var(--color-text);
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.home h1 {
+    margin: 1rem;
+}
+
+.produtos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    padding: 1rem;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.dados_reciclagem {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 2rem;
+    padding: 1rem;
+    max-width: 800px;
+    text-align: center;
+}
+
+.dados_reciclagem article {
+    flex: 1;
+    margin: 1rem;
+    border-radius: 0.2em;
+    padding: 1rem;
+    background-color: var(--color-verde-principal);
+    min-width: 300px;
+}
+
+.dados_reciclagem h3 {
+    margin-bottom: 0.5rem;
+}
+
+.referencia {
+    text-decoration: none;
+    color: var(--color-verde-claro);
+    font-weight: bold;
+}
+
+.referencia_map {
+    text-decoration: none;
+    color: var(--color-text);
+    font-weight: 400;
+    margin: 0.5em;
+}
+
+.mapa_sinir {
+    width: 100%;
+    height: 100vh;
+    background-color: var(--color-verde-principal);
+    padding: 0  0 2rem 0;
+    margin: 1rem  0 2rem 0;
+}
