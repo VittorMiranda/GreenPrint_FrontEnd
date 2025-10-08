@@ -85,14 +85,15 @@
 }
 
 .carousel-thumbnails img {
-  max-width: 6em;      /* miniatura pequena */
-  max-height: 6em;
+  max-width: 4em;      /* miniatura pequena */
+  max-height: 4em;
   object-fit: cover;
   border-radius: 5px;
   cursor: pointer;
   transition: transform 0.2s, border 0.2s, opacity 0.2s;
   opacity: 0.6;
   border: 2px solid transparent;
+  margin: 0.2em;
 }
 
 .carousel-thumbnails img.active {

@@ -3,7 +3,9 @@ import Home from "../pages/public/Home";
 import Dashboard from "../pages/private/Dashboard";
 import PrivateLayout from "../layouts/PrivateLayout";
 import Account from "../pages/private/Account";
-import Produto from "../pages/public/Produto";
+import ProdutoDetalhes from "../pages/public/ProdutoDetalhes";
+import ProdutoList from "../pages/public/ProdutoList";
+import Perfil from "../pages/public/Perfil";
 
 // Componente para rotas privadas
 function PrivateRoute({ user, children }) {
@@ -22,8 +24,10 @@ export default function AppRouter() {
       <Routes>
         {/* Rota pública */}
         <Route path="/" element={<Home />} />
+        <Route path="/produto_list" element={<ProdutoList />} />
+        <Route path="/perfil" element={<Perfil />} />
         {/* Rota de produto com parâmetro dinâmico */}
-        <Route path="/produto/:id" element={<Produto />} />
+        <Route path="/produto/:id" element={<ProdutoDetalhes />} />
 
         {/* Rotas privadas */}
         <Route

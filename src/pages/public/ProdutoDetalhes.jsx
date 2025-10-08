@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { ErrorBoundary } from "../../components/ErrorBoundary";
 import Navbar from "../../components/NavBar/NavBar";
 import PublicLayout from "../../layouts/PublicLayout";
-import "../../styles/ProdutoHome.css";
+import "../../styles/ProdutoDetalhe.css";
 
 import img1 from "../../assets/15-peças-de-design-feitas-com-caixas-de-papelão-dezeen-05.png";
 import img2 from "../../assets/15-peças-de-design-feitas-com-caixas-de-papelão-dezeen-06.png";
@@ -36,9 +36,33 @@ const produtos = [
       "Caixa resistente e versátil, ideal para armazenamento e organização de objetos.",
     images: [img2, img3, img1],
   },
+  {
+    id: 1,
+    name: "Caixa Casa de Gato",
+    color: "Azul",
+    height: 2,
+    width: 3,
+    depth: 6,
+    volume: 36,
+    description:
+      "Uma charmosa casa de gato feita em papelão reforçado e sustentável, perfeita para pets pequenos.",
+    images: [img1, img2, img3],
+  },
+  {
+    id: 2,
+    name: "Caixa Multiuso",
+    color: "Marrom",
+    height: 10,
+    width: 15,
+    depth: 20,
+    volume: 300,
+    description:
+      "Caixa resistente e versátil, ideal para armazenamento e organização de objetos.",
+    images: [img2, img3, img1],
+  },
 ];
 
-export default function Produto() {
+export default function ProdutoDetalhes() {
   const { id } = useParams();
   const produto = produtos.find((p) => p.id === parseInt(id));
 
