@@ -7,30 +7,25 @@ import Footer from "../../components/Footer/Footer";
 import Input from "../../components/Inputs/Input";
 import acount from "../../assets/acount.svg";
 import Button from "../../components/Buttons/Button";
-export default function Perfil() {
+import Select from "../../components/Select/Select";
+import ImageUpload from "../../components/Inputs/InputFile";
+import TextArea from "../../components/Inputs/TextArea";
+export default function UserLogin() {
   return (
     <PublicLayout>
         <ErrorBoundary>
           <NavBar/>
         </ErrorBoundary>
         <main className="account">
-            <img className="imagem_perfil" src={acount} alt="" />    
-            <h2>Vitor Hugo</h2>
+            <h2>Login</h2>
             <form className="dados_pessoais">
-                <h3>Dados Pessoais</h3>
-                <Input type="text" text_label="Nome"/>
+              
                 <Input type="email" text_label="E-mail"/>
-                <Input type="text" text_label="Telefone"/>
-                <Button text="Atualizar"/>
-            </form>           
-            <form className="trocar_senha">
-                <h3>Trocar Senha</h3>
-                <Input type="password" text_label="Senha Atual"/>
-                <Input type="password" text_label="Nova Senha"/>
-                <Button text="Alterar senha"/>
-            </form>
-            
-
+                <Input type="senha" text_label="Senha"/>
+                <p>Esqueci a senha</p>
+                
+                <Button text="Cadastrar"/>
+            </form>                    
         </main>
         <Footer/>
     </PublicLayout>
