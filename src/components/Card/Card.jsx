@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "./Card.css";
-
+import img1 from "../../assets/15-peças-de-design-feitas-com-caixas-de-papelão-dezeen-05.png";
 export default function Card({ product }) {
   return (
     <Link to={`/produto/${product.id}`} className="product-link">
@@ -8,7 +8,7 @@ export default function Card({ product }) {
         {/* Imagem principal do produto */}
         <div className="image-container">
             <img
-            src={product.images} 
+            src={product.images?.[0] || img1}
             alt={product.name}
             className="product-image"
             />

@@ -1,0 +1,71 @@
+.product-carousel {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 800px;
+    margin: 2em auto;
+}
+  
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease;
+    width: 100%;
+}
+  
+.carousel-slide {
+    min-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+  /* Botões laterais */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    transition: 0.3s;
+}
+  
+.carousel-btn:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+  
+.carousel-btn.left {
+    left: 10px;
+}
+  
+.carousel-btn.right {
+    right: 10px;
+}
+  
+  /* Bolinhas de navegação */
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+  
+.dot {
+    height: 10px;
+    width: 10px;
+    margin: 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+  
+.dot.active {
+    background-color: var(--color-verde-escuro, #007f5f);
+    transform: scale(1.2);
+}
+  

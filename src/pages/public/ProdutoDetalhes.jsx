@@ -9,6 +9,7 @@ import img1 from "../../assets/15-peças-de-design-feitas-com-caixas-de-papela�
 import img2 from "../../assets/15-peças-de-design-feitas-com-caixas-de-papelão-dezeen-06.png";
 import img3 from "../../assets/moveis-de-papelao-02.png";
 import CarouselPequeno from "../../components/Carrossel/CarrouselPequeno";
+import ProductCarousel from "../../components/Carrossel/ProductCarousel";
 
 // ⚙️ Simulação temporária (depois substitui por fetch da API)
 const produtos = [
@@ -88,31 +89,40 @@ export default function ProdutoDetalhes() {
 
       <main className="produto_detalhes">
         {/* === Lado Esquerdo: Dados === */}
-        <div className="produto_detalhes_dados">
-          <h2>{produto.name}</h2>
-          <p className="descricao">{produto.description}</p>
+        <div className="produto_detalhes_container">
+          <div className="produto_detalhes_dados">
+            <h2>{produto.name}</h2>
+            <p className="descricao">{produto.description}</p>
 
-          <ul>
-            <li>
-              <strong>Cor:</strong> {produto.color}
-            </li>
-            <li>
-              <strong>Dimensões:</strong> {produto.height}x{produto.width}x{produto.depth} cm
-            </li>
-            <li>
-              <strong>Volume:</strong> {produto.volume} L
-            </li>
-          </ul>
+            <ul>
+              <li>
+                <strong>Cor:</strong> {produto.color}
+              </li>
+              <li>
+                <strong>Dimensões:</strong> {produto.height}x{produto.width}x{produto.depth} cm
+              </li>
+              <li>
+                <strong>Volume:</strong> {produto.volume} L
+              </li>
+            </ul>
 
-          {/* 🧩 Mini carrossel controlando imagem principal */}
-          <CarouselPequeno images={produto.images} onSelectImage={setMainImage} />
+            
+          </div>
+
+          {/* === Lado Direito: Imagem principal === */}
+          <div className="produto_detalhes_imagens">
+            <img src={mainImage} alt={produto.name} className="imagem_principal" />
+            {/* 🧩 Mini carrossel controlando imagem principal */}
+            <CarouselPequeno images={produto.images} onSelectImage={setMainImage} />
+          </div>
         </div>
 
-        {/* === Lado Direito: Imagem principal === */}
-        <div className="produto_detalhes_imagens">
-          <img src={mainImage} alt={produto.name} className="imagem_principal" />
+        <div className="produtos">
+          <ProductCarousel products={produtos}/>  
         </div>
+         
       </main>
+
     </PublicLayout>
   );
 }

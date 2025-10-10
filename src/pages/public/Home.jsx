@@ -11,26 +11,55 @@ import img3 from "../../assets/moveis-de-papelao-02.png";
 import "../../styles/home.css";
 import { Link } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
+import ProductCarousel from "../../components/Carrossel/ProductCarousel";
 const produtos = [
   {
-    id:1,
-    name: "Caixa Verde Padrão",
-    color: "Verde Escuro",
-    height: 30,
-    width: 40,
-    depth: 25,
-    volume: 30,
-    images:img1, 
+    id: 1,
+    name: "Caixa Casa de Gato",
+    color: "Azul",
+    height: 2,
+    width: 3,
+    depth: 6,
+    volume: 36,
+    description:
+      "Uma charmosa casa de gato feita em papelão reforçado e sustentável, perfeita para pets pequenos.",
+    images: [img1, img2, img3],
   },
   {
-    id:2,
-    name: "Caixa Azul Média",
-    color: "Azul Claro",
-    height: 25,
-    width: 35,
+    id: 2,
+    name: "Caixa Multiuso",
+    color: "Marrom",
+    height: 10,
+    width: 15,
     depth: 20,
-    volume: 25,
-    images: img2,
+    volume: 300,
+    description:
+      "Caixa resistente e versátil, ideal para armazenamento e organização de objetos.",
+    images: [img2, img3, img1],
+  },
+  {
+    id: 1,
+    name: "Caixa Casa de Gato",
+    color: "Azul",
+    height: 2,
+    width: 3,
+    depth: 6,
+    volume: 36,
+    description:
+      "Uma charmosa casa de gato feita em papelão reforçado e sustentável, perfeita para pets pequenos.",
+    images: [img1, img2, img3],
+  },
+  {
+    id: 2,
+    name: "Caixa Multiuso",
+    color: "Marrom",
+    height: 10,
+    width: 15,
+    depth: 20,
+    volume: 300,
+    description:
+      "Caixa resistente e versátil, ideal para armazenamento e organização de objetos.",
+    images: [img2, img3, img1],
   },
 ];
 
@@ -67,7 +96,7 @@ export default function Home() {
             <Link className="referencia_map" to="https://sinir.gov.br/mapas/">REFERÊNCIA: Mapa Gestão de Resíduos Sólidos</Link>
           </div>
           <div className="produtos">
-            {produtos.map((produto, index) => (<Card key={index} product={produto} />))}   
+            <ProductCarousel products={produtos}/>   
           </div>            
         </main>
         <Footer/>
