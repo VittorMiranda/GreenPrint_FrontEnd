@@ -36,4 +36,22 @@
     margin-bottom: 1em;
     border: solid 3px var(--color-verde-escuro);
 }
+
+.erro {
+    color: red;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+  
+.link_esqueci {
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+    color: var(--color-verde-principal);
+    text-decoration: none;
+    transition: 0.2s;
+}
+  
+.link_esqueci:hover {
+    text-decoration: underline;
+}
   

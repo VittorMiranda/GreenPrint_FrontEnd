@@ -1,10 +1,21 @@
 import "./Input.css";
+import { useId } from "react";
 
-export default function Input(props) {
+export default function Input({ type = "text", text_label, value, onChange, placeholder }) {
+  const id = useId(); // Gera um ID único e estável por instância
+
   return (
     <div className="input_label">
-        <label htmlFor="" className="label">{props.text_label}</label>
-        <input type={props.type} className="input" />
+      <label htmlFor={id} className="label">{text_label}</label>
+      <input
+        id={id}
+        type={type}
+        className="input"
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder}
+        autoComplete="on"
+      />
     </div>
   );
 }
