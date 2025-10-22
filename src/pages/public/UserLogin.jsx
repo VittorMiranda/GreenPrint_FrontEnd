@@ -41,14 +41,14 @@ export default function UserLogin() {
             type="email"
             text_label="E-mail"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(value) => setEmail(value)}
             placeholder="Digite seu e-mail"
           />
           <Input
             type="password"
             text_label="Senha"
             value={senha}
-            onChange={(e) => setSenha(e.target.value)}
+            onChange={(value) => setSenha(value)}
             placeholder="Digite sua senha"
           />
 

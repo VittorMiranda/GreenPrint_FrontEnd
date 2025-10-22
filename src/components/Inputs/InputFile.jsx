@@ -5,21 +5,36 @@ export default function ImageUpload({ label = "Envie até 3 imagens", onChange }
   const [previews, setPreviews] = useState([]);
 
   const handleFileChange = (e) => {
-    const files = Array.from(e.target.files).slice(0, 3); // limita a 3 imagens
+    const files = Array.from(e.target.files).slice(0, 3); // limite de 3 imagens
 
-    // gera pré-visualizações
-    const newPreviews = files.map((file) => URL.createObjectURL(file));
-    setPreviews(newPreviews);
+    const readers = files.map((file) => {
+      return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const base64Full = reader.result; // data:image/...;base64,xxxx
+          const base64 = base64Full.split(",")[1];
+          resolve({
+            nome: file.name,
+            tipo: file.type,
+            base64,
+            preview: base64Full, // pra exibir
+            blob: file,
+          });
+        };
+        reader.readAsDataURL(file);
+      });
+    });
 
-    // envia para o componente pai
-    if (onChange) {
-      onChange(files);
-    }
+    Promise.all(readers).then((imagens) => {
+      setPreviews(imagens.map((img) => img.preview));
+
+      if (onChange) onChange(imagens); // envia lista completa para o pai
+    });
   };
 
   const removeImage = (index) => {
-    const updatedPreviews = previews.filter((_, i) => i !== index);
-    setPreviews(updatedPreviews);
+    const updated = previews.filter((_, i) => i !== index);
+    setPreviews(updated);
   };
 
   return (

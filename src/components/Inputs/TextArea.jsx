@@ -1,7 +1,7 @@
 import "./TextArea.css";
 
 export default function TextArea({
-  label = "Descrição",
+  text_label,
   placeholder = "Digite aqui...",
   value,
   onChange,
@@ -14,7 +14,7 @@ export default function TextArea({
 
   return (
     <div className="textarea-container">
-      {label && <label className="textarea-label">{label}</label>}
+      {text_label && <label className="textarea-label">{text_label}</label>}
 
       <textarea
         className="textarea-input"

@@ -20,6 +20,8 @@
     background-color: #fff;
     cursor: pointer;
     transition: border-color 0.3s ease;
+    color: var(--color-text);
+    text-align: center;
 }
   
 .image-upload-input:hover {
@@ -61,3 +63,6 @@
     font-size: 0.8rem;
 }
   
+.image-upload-input::file-selector-button {
+    display: none;
+}

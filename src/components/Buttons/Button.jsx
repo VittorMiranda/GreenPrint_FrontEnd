@@ -1,12 +1,9 @@
 import "./Button.css";
-import { Link } from "react-router-dom";
 
-export default function Button(props) {
+export default function Button({ text, onClick, type = "button" }) {
   return (
-    <div>
-      <Link to={props.to} className="button">
-        {props.text}
-      </Link>
-    </div>
+    <button className="button" type={type} onClick={onClick}>
+      {text}
+    </button>
   );
 }
