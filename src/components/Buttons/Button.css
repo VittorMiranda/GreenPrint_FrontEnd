@@ -9,10 +9,10 @@
     border: none;
     border-radius: 6px;
     padding: 0.6rem 1.2rem;
-    margin: 1rem;
     font-size: 1.2rem;
     cursor: pointer;
     transition: background-color 0.2s ease;
+    text-decoration: none;
 }
 
 .button:hover{

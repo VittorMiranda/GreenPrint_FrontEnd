@@ -96,8 +96,10 @@ export default function Home() {
             <Link className="referencia_map" to="https://sinir.gov.br/mapas/">REFERÊNCIA: Mapa Gestão de Resíduos Sólidos</Link>
           </div>
           <div className="produtos">
-            <ProductCarousel products={produtos}/>   
-          </div>            
+            <ProductCarousel products={produtos}/> 
+            <Button to="/produto_list" text="Ver mais"/> 
+          </div> 
+
         </main>
         <Footer/>
     </PublicLayout>

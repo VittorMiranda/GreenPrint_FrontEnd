@@ -38,7 +38,7 @@ export default function Navbar({ user }) {
 
       <div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
         <Link to="/" onClick={() => setMenuOpen(false)}>Início</Link>
-        <Link to="/produtos" onClick={() => setMenuOpen(false)}>Produtos</Link>
+        <Link to="/produto_list" onClick={() => setMenuOpen(false)}>Produtos</Link>
         <Link to="/sobre" onClick={() => setMenuOpen(false)}>Sobre</Link>
         <Link to="/contato" onClick={() => setMenuOpen(false)}>Contato</Link>
       </div>
