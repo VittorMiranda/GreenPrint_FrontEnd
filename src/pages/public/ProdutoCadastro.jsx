@@ -26,19 +26,25 @@ export default function ProdutoCadastro() {
     valorVenda: "",
     nomeProjeto: "",
     descricaoProjeto: "",
-    imagem: null,
-    tipoImagem: "",
+    imagens: [],
   });
 
   const handleChange = (field, value) => {
     setForm((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleImageUpload = (fileData) => {
-    if (!fileData) return;
-    handleChange("imagem", fileData.base64);
-    handleChange("tipoImagem", fileData.tipo);
-  };
+  const handleImageUpload = (imagens) => {
+  if (!imagens || imagens.length === 0) return;
+
+  console.log("Imagens recebidas:", imagens);
+
+  // salva todas as imagens no estado
+  handleChange("imagens", imagens.map(img => ({
+    arquivoImagem: img.base64,
+    tipoImagem: img.tipo,
+  })));
+};
+
   
 
   const handleSubmit = async (e) => {
@@ -48,14 +54,7 @@ export default function ProdutoCadastro() {
   
       const payload = {
         ...form,
-        imagens: form.imagem
-          ? [
-              {
-                arquivoImagem: form.imagem,
-                tipoImagem: form.tipoImagem,
-              },
-            ]
-          : [],
+        imagens: form.imagens || [],
       };
   
       delete payload.imagem;
