@@ -1,31 +1,45 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { getUsuario, isAuthenticated } from "../../services/authService";
 import "./NavBar.css";
 import logo from "../../assets/GreenPrint_Logo.svg";
 import acount from "../../assets/acount.svg";
 import menu from "../../assets/menu.svg";
 import close from "../../assets/close.svg";
 
-export default function Navbar({ user }) {
-  
+export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
+  useEffect(() => {
+    if (isAuthenticated()) {
+      const usuario = getUsuario();
+      setUser(usuario);
+    }
+  }, [navigate]);
+
   return (
     <nav className="navbar">
-      <div className="logo">
+      <Link className="logo" to="/home">
         <img src={logo} alt="Logo GreenPrint" />
         <span>GreenPrint</span>
-      </div>
+      </Link>
 
       <div className="menu_account">
         {user ? (
-          <Link to="/account">
-            <img src={acount} alt={user.name} className="icon-account" />
-          </Link>
+          <div className="account-logged">
+            <Link to="/account">
+              <img src={acount} alt={user.nome} className="icon-account" />
+            </Link>
+            <span className="user-name">{user.nome}</span>
+          </div>
         ) : (
-          <Link to="/login"><img src={acount} alt="" className="icon-account" /></Link>
+          <Link to="/user_login">
+            <img src={acount} alt="Login" className="icon-account" />
+          </Link>
         )}
 
         <img

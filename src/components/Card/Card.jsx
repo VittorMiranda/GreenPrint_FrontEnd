@@ -9,19 +9,19 @@ export default function Card({ product }) {
         <div className="image-container">
             <img
             src={product.images?.[0] || img1}
-            alt={product.name}
+            alt={product.nome}
             className="product-image"
             />
         </div>
 
         {/* Informações do produto */}
         <div className="product-info">
-            <h3>{product.name}</h3>
+            <h3>{product.nome}</h3>
             <p>
             <strong>Cor:</strong> {product.color}
             </p>
             <p>
-            <strong>Dimensões:</strong> {product.height}x{product.width}x{product.depth} cm
+            <strong>Dimensões:</strong> {product.altura}x{product.largura}x{product.profundidade} cm
             </p>
             {product.volume && (
             <p>

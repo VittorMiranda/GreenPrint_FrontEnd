@@ -1,69 +1,32 @@
+import { useEffect, useState } from "react";
 import PublicLayout from "../../layouts/PublicLayout";
 import NavBar from "../../components/NavBar/NavBar";
 import Button from "../../components/Buttons/Button";
-import Input from "../../components/Inputs/Input";
 import Carousel from "../../components/Carrossel/Carousel";
 import { ErrorBoundary } from "../../components/ErrorBoundary";
 import Card from "../../components/Card/Card";
-import img1 from "../../assets/15-peças-de-design-feitas-com-caixas-de-papelão-dezeen-05.png";
-import img2 from "../../assets/15-peças-de-design-feitas-com-caixas-de-papelão-dezeen-06.png";
-import img3 from "../../assets/moveis-de-papelao-02.png";
 import "../../styles/home.css";
 import { Link } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 import ProductCarousel from "../../components/Carrossel/ProductCarousel";
-const produtos = [
-  {
-    id: 1,
-    name: "Caixa Casa de Gato",
-    color: "Azul",
-    height: 2,
-    width: 3,
-    depth: 6,
-    volume: 36,
-    description:
-      "Uma charmosa casa de gato feita em papelão reforçado e sustentável, perfeita para pets pequenos.",
-    images: [img1, img2, img3],
-  },
-  {
-    id: 2,
-    name: "Caixa Multiuso",
-    color: "Marrom",
-    height: 10,
-    width: 15,
-    depth: 20,
-    volume: 300,
-    description:
-      "Caixa resistente e versátil, ideal para armazenamento e organização de objetos.",
-    images: [img2, img3, img1],
-  },
-  {
-    id: 1,
-    name: "Caixa Casa de Gato",
-    color: "Azul",
-    height: 2,
-    width: 3,
-    depth: 6,
-    volume: 36,
-    description:
-      "Uma charmosa casa de gato feita em papelão reforçado e sustentável, perfeita para pets pequenos.",
-    images: [img1, img2, img3],
-  },
-  {
-    id: 2,
-    name: "Caixa Multiuso",
-    color: "Marrom",
-    height: 10,
-    width: 15,
-    depth: 20,
-    volume: 300,
-    description:
-      "Caixa resistente e versátil, ideal para armazenamento e organização de objetos.",
-    images: [img2, img3, img1],
-  },
-];
 
 export default function Home() {
+  const [produtos, setProdutos] = useState([]);
+
+  useEffect(() => {
+    async function fetchProdutos() {
+      try {
+        const response = await fetch("http://localhost:8080/produtos"); // ajuste a URL se necessário
+        const data = await response.json();
+        setProdutos(data.content || []); // se estiver usando Page do Spring
+      } catch (error) {
+        console.error("Erro ao buscar produtos:", error);
+      }
+    }
+
+    fetchProdutos();
+  }, []);
+
   return (
     <PublicLayout>
         <ErrorBoundary>
@@ -96,9 +59,9 @@ export default function Home() {
             <Link className="referencia_map" to="https://sinir.gov.br/mapas/">REFERÊNCIA: Mapa Gestão de Resíduos Sólidos</Link>
           </div>
           <div className="produtos">
-            <ProductCarousel products={produtos}/> 
-            <Button to="/produto_list" text="Ver mais"/> 
-          </div> 
+            {produtos.length > 0 && <ProductCarousel products={produtos} />}
+            <Button to="/produto_list" text="Ver mais" />
+          </div>
 
         </main>
         <Footer/>

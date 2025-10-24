@@ -8,13 +8,32 @@
   height: 4rem;
   padding: 0 1.5rem;
   position: relative;
-  font-family: var( --font-main);
+  font-family: var(--font-main);
 }
 
+/* Corrigido o nome da classe */
 .logo,
-.menu_acount {
+.menu_account {
   display: flex;
   align-items: center;
+  text-decoration: none;
+}
+
+.menu_account {
+  justify-content: flex-end; /* coloca ícones no canto direito */
+  gap: 1rem; /* espaço entre ícone da conta e menu */
+}
+
+.account-logged {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-name {
+  font-size: 0.8rem;
+  font-weight: 600 ;
+  color: var(--color-text);
 }
 
 .logo img {
@@ -26,18 +45,17 @@
   color: var(--color-text);
 }
 
-.menu_acount img {
-  width: 28px;
-  margin-left: 1rem;
+.menu_account img {
+  width: 40px;
   cursor: pointer;
   transition: opacity 0.2s ease;
 }
 
-.menu_acount img:hover {
+.menu_account img:hover {
   opacity: 0.8;
 }
 
-/* Menu sempre escondido inicialmente */
+/* Menu mobile */
 .mobile-menu {
   display: none;
   flex-direction: column;
@@ -58,7 +76,7 @@
   margin: 0.8rem 0;
   font-size: 1.1rem;
   transition: opacity 0.2s ease;
-  font-family: var( --font-main);
+  font-family: var(--font-main);
 }
 
 .mobile-menu a:hover {
@@ -68,5 +86,3 @@
 .mobile-menu.open {
   display: flex;
 }
-
-

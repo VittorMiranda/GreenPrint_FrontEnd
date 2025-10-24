@@ -33,6 +33,8 @@ export default function ProdutoCadastro() {
     setForm((prev) => ({ ...prev, [field]: value }));
   };
 
+  const [previews, setPreviews] = useState([]);
+
   const handleImageUpload = (imagens) => {
   if (!imagens || imagens.length === 0) return;
 
@@ -43,6 +45,7 @@ export default function ProdutoCadastro() {
     arquivoImagem: img.base64,
     tipoImagem: img.tipo,
   })));
+  setPreviews(imagens.map(img => img.preview));
 };
 
   
@@ -114,8 +117,8 @@ export default function ProdutoCadastro() {
           <Input type="text" text_label="Nome do projeto" value={form.nomeProjeto} onChange={(value) => handleChange("nomeProjeto", value)} />
           <TextArea text_label="Descrição do projeto" value={form.descricaoProjeto} onChange={(value) => handleChange("descricaoProjeto", value)} />
           <ImageUpload
-            value={form.imagem ? [form.imagem] : []}
-            onChange={(files) => handleImageUpload(files)}
+            value={previews || []} // só para exibir previews
+            onChange={handleImageUpload}
           />
 
           <Button text="Cadastrar"  type="submit"/>

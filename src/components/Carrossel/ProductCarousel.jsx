@@ -32,7 +32,14 @@ export default function ProductCarousel({ products = [] }) {
       >
         {products.map((product, index) => (
           <div className="carousel-slide" key={`${product.id}-${index}`}>
-            <Card product={product} />
+            <Card
+              key={`${product.id}-${index}`}
+              product={{
+                ...product,
+                images: product.imagens?.map((img) => img.imagemCompleta) || [],
+              }}
+            />
+            
           </div>
         ))}
       </div>

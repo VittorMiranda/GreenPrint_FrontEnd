@@ -1,73 +1,54 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ErrorBoundary } from "../../components/ErrorBoundary";
 import Navbar from "../../components/NavBar/NavBar";
 import PublicLayout from "../../layouts/PublicLayout";
 import "../../styles/ProdutoDetalhe.css";
-
-import img1 from "../../assets/15-peças-de-design-feitas-com-caixas-de-papelão-dezeen-05.png";
-import img2 from "../../assets/15-peças-de-design-feitas-com-caixas-de-papelão-dezeen-06.png";
-import img3 from "../../assets/moveis-de-papelao-02.png";
 import CarouselPequeno from "../../components/Carrossel/CarrouselPequeno";
 import ProductCarousel from "../../components/Carrossel/ProductCarousel";
-
-// ⚙️ Simulação temporária (depois substitui por fetch da API)
-const produtos = [
-  {
-    id: 1,
-    name: "Caixa Casa de Gato",
-    color: "Azul",
-    height: 2,
-    width: 3,
-    depth: 6,
-    volume: 36,
-    description:
-      "Uma charmosa casa de gato feita em papelão reforçado e sustentável, perfeita para pets pequenos.",
-    images: [img1, img2, img3],
-  },
-  {
-    id: 2,
-    name: "Caixa Multiuso",
-    color: "Marrom",
-    height: 10,
-    width: 15,
-    depth: 20,
-    volume: 300,
-    description:
-      "Caixa resistente e versátil, ideal para armazenamento e organização de objetos.",
-    images: [img2, img3, img1],
-  },
-  {
-    id: 1,
-    name: "Caixa Casa de Gato",
-    color: "Azul",
-    height: 2,
-    width: 3,
-    depth: 6,
-    volume: 36,
-    description:
-      "Uma charmosa casa de gato feita em papelão reforçado e sustentável, perfeita para pets pequenos.",
-    images: [img1, img2, img3],
-  },
-  {
-    id: 2,
-    name: "Caixa Multiuso",
-    color: "Marrom",
-    height: 10,
-    width: 15,
-    depth: 20,
-    volume: 300,
-    description:
-      "Caixa resistente e versátil, ideal para armazenamento e organização de objetos.",
-    images: [img2, img3, img1],
-  },
-];
+import { getProdutoPorId, getProdutos } from "../../services/produtoService";
 
 export default function ProdutoDetalhes() {
   const { id } = useParams();
-  const produto = produtos.find((p) => p.id === parseInt(id));
+  const [produto, setProduto] = useState(null);
+  const [mainImage, setMainImage] = useState(null);
+  const [produtosRelacionados, setProdutosRelacionados] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const [mainImage, setMainImage] = useState(produto?.images[0]);
+  useEffect(() => {
+    async function fetchProduto() {
+      try {
+        const token = localStorage.getItem("token");
+
+        // Busca o produto específico
+        const response = await getProdutoPorId(id, token);
+
+        // Ajusta o formato para front
+        const produtoFormatado = {
+          ...response,
+          images: response.imagens?.map((img) => img.imagemCompleta) || [],
+        };
+        setProduto(produtoFormatado);
+        setMainImage(produtoFormatado.images?.[0] || null);
+
+        // Buscar outros produtos para carrossel
+        const allProdutos = await getProdutos(token);
+        const produtosFormatados = allProdutos.content.map((p) => ({
+          ...p,
+          images: p.imagens?.map((img) => img.imagemCompleta) || [],
+        }));
+        setProdutosRelacionados(produtosFormatados);
+      } catch (err) {
+        console.error("Erro ao buscar produto:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchProduto();
+  }, [id]);
+
+  if (loading) return <p>Carregando produto...</p>;
 
   if (!produto) {
     return (
@@ -91,38 +72,33 @@ export default function ProdutoDetalhes() {
         {/* === Lado Esquerdo: Dados === */}
         <div className="produto_detalhes_container">
           <div className="produto_detalhes_dados">
-            <h2>{produto.name}</h2>
-            <p className="descricao">{produto.description}</p>
+            <h2>{produto.nome}</h2>
+            <p className="descricao">{produto.projetoPrincipalDescricao || "Sem descrição"}</p>
 
             <ul>
               <li>
-                <strong>Cor:</strong> {produto.color}
+                <strong>Cor:</strong> {produto.cor}
               </li>
               <li>
-                <strong>Dimensões:</strong> {produto.height}x{produto.width}x{produto.depth} cm
+                <strong>Dimensões:</strong> {produto.altura}x{produto.largura}x{produto.profundidade} cm
               </li>
               <li>
-                <strong>Volume:</strong> {produto.volume} L
+                <strong>Volume:</strong> {produto.volumeSuportado} L
               </li>
             </ul>
-
-            
           </div>
 
           {/* === Lado Direito: Imagem principal === */}
           <div className="produto_detalhes_imagens">
-            <img src={mainImage} alt={produto.name} className="imagem_principal" />
-            {/* 🧩 Mini carrossel controlando imagem principal */}
+            {mainImage && <img src={mainImage} alt={produto.nome} className="imagem_principal" />}
             <CarouselPequeno images={produto.images} onSelectImage={setMainImage} />
           </div>
         </div>
 
         <div className="produtos">
-          <ProductCarousel products={produtos}/>  
+          <ProductCarousel products={produtosRelacionados} />
         </div>
-         
       </main>
-
     </PublicLayout>
   );
 }
