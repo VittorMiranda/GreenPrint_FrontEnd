@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import PublicLayout from "../../layouts/PublicLayout";
 import NavBar from "../../components/NavBar/NavBar";
-import Button from "../../components/Buttons/Button";
+import ButtonLinks from "../../components/Buttons/ButtonLinks";
 import Carousel from "../../components/Carrossel/Carousel";
 import { ErrorBoundary } from "../../components/ErrorBoundary";
 import Card from "../../components/Card/Card";
@@ -60,7 +60,7 @@ export default function Home() {
           </div>
           <div className="produtos">
             {produtos.length > 0 && <ProductCarousel products={produtos} />}
-            <Button to="/produto_list" text="Ver mais" />
+            <ButtonLinks to="/produto_list" text="Ver mais" />
           </div>
 
         </main>

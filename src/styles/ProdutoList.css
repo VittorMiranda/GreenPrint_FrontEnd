@@ -8,3 +8,13 @@
     background-color: var(--color-background);
     padding-top: 1em;
 }
+
+.produtos{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: var(--color-background);
+    padding-top: 1em;
+}
+
