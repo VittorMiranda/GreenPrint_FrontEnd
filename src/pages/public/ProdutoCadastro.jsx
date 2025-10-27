@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate,  useParams  } from "react-router-dom";
 import PublicLayout from "../../layouts/PublicLayout";
 import NavBar from "../../components/NavBar/NavBar";
 import { ErrorBoundary } from "../../components/ErrorBoundary";
@@ -9,11 +10,15 @@ import Button from "../../components/Buttons/Button";
 import Select from "../../components/Select/Select";
 import ImageUpload from "../../components/Inputs/InputFile";
 import TextArea from "../../components/Inputs/TextArea";
-import { cadastrarProduto } from "../../services/produtoService";
+import { cadastrarProduto, atualizarProduto, getProdutoPorId } from "../../services/produtoService";
 import { getTiposPapelao } from "../../services/tipoPapelaoService";
 
 export default function ProdutoCadastro() {
+  const { id } = useParams();
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({
+    id: null,
     nome: "",
     altura: "",
     largura: "",
@@ -29,11 +34,13 @@ export default function ProdutoCadastro() {
     imagens: [],
   });
 
+  const [previews, setPreviews] = useState([]);
+  const [tiposPapelao, setTiposPapelao] = useState([]);
+  const [selectedTipo, setSelectedTipo] = useState("");
+
   const handleChange = (field, value) => {
     setForm((prev) => ({ ...prev, [field]: value }));
   };
-
-  const [previews, setPreviews] = useState([]);
 
   const handleImageUpload = (imagens) => {
   if (!imagens || imagens.length === 0) return;
@@ -48,8 +55,32 @@ export default function ProdutoCadastro() {
   setPreviews(imagens.map(img => img.preview));
 };
 
-  
-
+    useEffect(() => {
+    async function carregarProduto() {
+      if (id) {
+        const produto = await getProdutoPorId(id);
+        setForm({
+          id: produto.id,
+          nome: produto.nome,
+          altura: produto.altura,
+          largura: produto.largura,
+          profundidade: produto.profundidade,
+          quantidadeEstoque: produto.quantidadeEstoque,
+          volumeSuportado: produto.volume,
+          idTipoPapelao: produto.idTipoPapelao,
+          cor: produto.cor,
+          valorCompra: produto.valorCompra,
+          valorVenda: produto.valorVenda,
+          nomeProjeto: produto.nomeProjeto,
+          descricaoProjeto: produto.descricaoProjeto,
+          imagens: produto.imagens || [],
+        });
+        setSelectedTipo(String(produto.idTipoPapelao));
+        setPreviews((produto.imagens || []).map(img => img.imagemCompleta || ""));
+      }
+    }
+    carregarProduto();
+  }, [id]);
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -62,18 +93,21 @@ export default function ProdutoCadastro() {
   
       delete payload.imagem;
       delete payload.tipoImagem;
-  
-      const result = await cadastrarProduto(payload, token);
-      console.log("Produto cadastrado:", result);
-      alert("Produto cadastrado com sucesso!");
+
+      if (id) {
+        await atualizarProduto(payload, token);
+        alert("Produto atualizado com sucesso!");
+      } else {
+        await cadastrarProduto(payload, token);
+        alert("Produto cadastrado com sucesso!");
+      }
+      navigate("/produto_list");
+
     } catch (err) {
-      console.error("Erro ao cadastrar:", err);
+      console.error("Erro ao salvar", err);
       alert("Erro ao cadastrar produto.");
     }
   };
-
-  const [tiposPapelao, setTiposPapelao] = useState([]);
-  const [selectedTipo, setSelectedTipo] = useState("");
 
   useEffect(() => {
     async function carregarTipos() {
@@ -121,7 +155,7 @@ export default function ProdutoCadastro() {
             onChange={handleImageUpload}
           />
 
-          <Button text="Cadastrar"  type="submit"/>
+          <Button text={id ? "Salvar alterações" : "Cadastrar"}  type="submit"/>
         </form>
       </main>
       <Footer />

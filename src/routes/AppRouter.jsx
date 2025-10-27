@@ -29,6 +29,7 @@ export default function AppRouter() {
         {/* Rota pública */}
         <Route path="/" element={<Home />} />
         <Route path="/produto_list" element={<ProdutoList />} />
+        <Route path="/produto_cadastro/:id" element={<ProdutoCadastro />} />
         <Route path="/produto_cadastro" element={<ProdutoCadastro />} />
         <Route path="/categoria_cadastro" element={<CategoriaCadastro />} />
         <Route path="/user_cadastro" element={<UserCadastro />} />

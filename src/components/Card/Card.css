@@ -53,3 +53,15 @@
     color: var(--color-background);
     font-size: 0.95rem;
 }
+
+.action-icons {
+    margin-top: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.update, .deletar {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
