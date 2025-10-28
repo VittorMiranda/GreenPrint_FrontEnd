@@ -72,6 +72,7 @@ export default function Navbar() {
         <Link to="/produto_list" onClick={() => setMenuOpen(false)}>Produtos</Link>
         <Link to="/produto_cadastro" onClick={() => setMenuOpen(false)}>Cadastro Produtos</Link>
         <Link to="/contato" onClick={() => setMenuOpen(false)}>Contato</Link>
+        <Link to="/sobre" onClick={() => setMenuOpen(false)}>Sobre</Link>
         {!user && (
           <>
             <Link to="/user_login" onClick={() => setMenuOpen(false)}>Login</Link>

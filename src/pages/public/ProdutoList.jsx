@@ -6,6 +6,7 @@ import Card from "../../components/Card/Card";
 import Footer from "../../components/Footer/Footer";
 import "../../styles/ProdutoList.css";
 import { getProdutos } from "../../services/produtoService"; // criar função de fetch
+import ButtonWpp from "../../components/Buttons/ButtonWpp";
 
 export default function ProdutoList() {
   const [produtos, setProdutos] = useState([]);
@@ -53,6 +54,11 @@ export default function ProdutoList() {
             <Card key={produto.id} product={produto} />
           ))}
         </div>
+        <ButtonWpp
+            phoneNumber="551999999999"
+            message="Olá! Gostaria de conhecer os valores sobre o produto."
+            floating={true}
+          />
       </main>
 
       <Footer />

@@ -10,6 +10,8 @@ import CategoriaCadastro from "../pages/public/CategoriaCadastro";
 import UserCadastro from "../pages/public/UserCadastro";
 import UserLogin from "../pages/public/UserLogin";
 import Sobre from "../pages/public/Sobre";
+import Contato from "../pages/public/Contato";
+import UserRoles from "../pages/public/UsersRoles";
 
 // Componente para rotas privadas
 function PrivateRoute({ user, children }) {
@@ -36,6 +38,8 @@ export default function AppRouter() {
         <Route path="/user_login" element={<UserLogin />} />
         <Route path="/perfil" element={<Perfil />} />
         <Route path="/sobre" element={<Sobre />} />
+        <Route path="/contato" element={<Contato />} />
+        <Route path="/adm_roles" element={<UserRoles />} />
         {/* Rota de produto com parâmetro dinâmico */}
         <Route path="/produto/:id" element={<ProdutoDetalhes />} />
 

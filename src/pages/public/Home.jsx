@@ -9,6 +9,7 @@ import "../../styles/home.css";
 import { Link } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 import ProductCarousel from "../../components/Carrossel/ProductCarousel";
+import ButtonWpp from "../../components/Buttons/ButtonWpp";
 
 export default function Home() {
   const [produtos, setProdutos] = useState([]);
@@ -63,6 +64,11 @@ export default function Home() {
             <ButtonLinks to="/produto_list" text="Ver mais" />
           </div>
 
+          <ButtonWpp
+            phoneNumber="551999999999"
+            message="Olá! Gostaria de conhecer os valores sobre o produto."
+            floating={true}
+          />
         </main>
         <Footer/>
     </PublicLayout>

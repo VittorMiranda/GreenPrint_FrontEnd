@@ -5,6 +5,7 @@ import "../../styles/Account.css";
 import { Link } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 import Input from "../../components/Inputs/Input";
+import InputPassword from "../../components/Inputs/InpuPassword";
 import acount from "../../assets/acount.svg";
 import Button from "../../components/Buttons/Button";
 export default function Perfil() {
@@ -23,10 +24,10 @@ export default function Perfil() {
                 <Input type="text" text_label="Telefone"/>
                 <Button text="Atualizar"/>
             </form>           
-            <form className="trocar_senha">
+            <form className="dados_pessoais">
                 <h3>Trocar Senha</h3>
-                <Input type="password" text_label="Senha Atual"/>
-                <Input type="password" text_label="Nova Senha"/>
+                <InputPassword type="password" text_label="Senha Atual"/>
+                <InputPassword type="password" text_label="Nova Senha"/>
                 <Button text="Alterar senha"/>
             </form>
             

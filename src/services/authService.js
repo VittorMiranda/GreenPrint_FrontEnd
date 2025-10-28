@@ -74,4 +74,53 @@ export async function cadastrarUsuario(usuario) {
   }
 }
 
+// === LISTAR USUÁRIOS ===
+export async function listarUsuarios() {
+  const token = getToken();
+  try {
+    const response = await fetch(`${API_URL}/usuarios`, {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Erro ao listar usuários");
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Erro ao buscar usuários:", error);
+    throw error;
+  }
+}
+
+
+export async function atualizarPapelUsuario(id, papel) {
+  const token = getToken();
+  try {
+    const response = await fetch(`${API_URL}/usuarios/papel`, {
+      method: "PUT",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id, papel }),
+    });
+
+    if (!response.ok) {
+      const erro = await response.text();
+      throw new Error(erro || "Erro ao atualizar papel");
+    }
+
+    return await response.text(); // Mensagem de sucesso
+  } catch (error) {
+    console.error("Erro ao atualizar papel:", error);
+    throw error;
+  }
+}
+
+
 

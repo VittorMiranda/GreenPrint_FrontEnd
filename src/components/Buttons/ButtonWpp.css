@@ -1,0 +1,44 @@
+@import url("../../styles/variables.css");
+.whatsapp-button {
+    background-color: #25d366;
+    color: var(--color-background);
+    border: none;
+    padding: 12px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .whatsapp-button:hover {
+    background-color: #20b458;
+    transform: scale(1.05);
+  }
+  
+  .whatsapp-button:active {
+    transform: scale(0.98);
+  }
+  
+  /* Botão flutuante no canto da tela */
+  .whatsapp-button.floating {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 15px;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+  }
+  
+  .whatsapp-button.floating svg {
+    margin: 0;
+  }
+  
+  .whatsapp-button.floating:hover {
+    transform: scale(1.1);
+  }
+  

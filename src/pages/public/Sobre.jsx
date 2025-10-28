@@ -8,6 +8,7 @@ import vitor from "../../assets/vitor.png"
 import caio from "../../assets/caio.png"
 import lori from "../../assets/lori.png"
 import gustavo from "../../assets/gustavo.png"
+import ButtonWpp from "../../components/Buttons/ButtonWpp";
 
 export default function Sobre() {
   return (
@@ -81,6 +82,11 @@ export default function Sobre() {
                     }} mostrarSelect={false}
                 />
             </section>
+            <ButtonWpp
+                phoneNumber="551999999999"
+                message="Olá! Gostaria de conhecer os valores sobre o produto."
+                floating={true}
+            />
             
         </main>
         <Footer/>

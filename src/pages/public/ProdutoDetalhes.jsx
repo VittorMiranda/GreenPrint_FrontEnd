@@ -7,6 +7,7 @@ import "../../styles/ProdutoDetalhe.css";
 import CarouselPequeno from "../../components/Carrossel/CarrouselPequeno";
 import ProductCarousel from "../../components/Carrossel/ProductCarousel";
 import { getProdutoPorId, getProdutos } from "../../services/produtoService";
+import ButtonWpp from "../../components/Buttons/ButtonWpp";
 
 export default function ProdutoDetalhes() {
   const { id } = useParams();
@@ -98,6 +99,11 @@ export default function ProdutoDetalhes() {
         <div className="produtos">
           <ProductCarousel products={produtosRelacionados} />
         </div>
+        <ButtonWpp
+            phoneNumber="551999999999"
+            message="Olá! Gostaria de conhecer os valores sobre o produto."
+            floating={true}
+          />
       </main>
     </PublicLayout>
   );
