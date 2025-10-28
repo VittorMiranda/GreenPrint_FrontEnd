@@ -53,3 +53,25 @@ export function getUsuario() {
     return null;
   }
 }
+
+export async function cadastrarUsuario(usuario) {
+  try {
+    const response = await fetch(`${API_URL}/usuarios/cadastro`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(usuario),
+    });
+
+    if (!response.ok) {
+      const erroTexto = await response.text(); // pega a mensagem de erro do backend
+      throw new Error(erroTexto || "Erro no cadastro");
+    }
+
+    return await response.text(); // pega a mensagem de sucesso
+  } catch (error) {
+    console.error("Erro no cadastro:", error);
+    throw error;
+  }
+}
+
+
