@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { getUsuario, isAuthenticated } from "../../services/authService";
+import { getUsuario, isAuthenticated, logout } from "../../services/authService";
 import "./NavBar.css";
 import logo from "../../assets/GreenPrint_Logo.svg";
-import acount from "../../assets/acount.svg";
+import account from "../../assets/acount.svg";
 import menu from "../../assets/menu.svg";
 import close from "../../assets/close.svg";
+import logoutIcon from "../../assets/logout.svg"; 
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -13,6 +14,12 @@ export default function Navbar() {
   const navigate = useNavigate();
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
+
+  const handleLogout = () => {
+    logout();
+    setUser(null);
+    navigate("/home");
+  };
 
   useEffect(() => {
     if (isAuthenticated()) {
@@ -30,16 +37,26 @@ export default function Navbar() {
 
       <div className="menu_account">
         {user ? (
-          <div className="account-logged">
-            <Link to="/account">
-              <img src={acount} alt={user.nome} className="icon-account" />
-            </Link>
-            <span className="user-name">{user.nome}</span>
+          <div className="user">
+            <img src={account} alt="" />
+            <div className="account-logged">
+              <Link to="/perfil" className="user-name-link">{user.nome}</Link>
+              <img
+                src={logoutIcon}
+                alt="Sair"
+                className="icon-logout"
+                onClick={handleLogout}
+              />
+            </div>
           </div>
         ) : (
-          <Link to="/user_login">
-            <img src={acount} alt="Login" className="icon-account" />
-          </Link>
+          <div className="user">
+            <img src={account} alt="" />
+            <div className="account-guest">
+              <Link to="/user_login" className="login-link">Login</Link>
+              <Link to="/user_cadastro" className="cadastro-link">Cadastro</Link>
+            </div>
+          </div>
         )}
 
         <img
@@ -55,6 +72,12 @@ export default function Navbar() {
         <Link to="/produto_list" onClick={() => setMenuOpen(false)}>Produtos</Link>
         <Link to="/produto_cadastro" onClick={() => setMenuOpen(false)}>Cadastro Produtos</Link>
         <Link to="/contato" onClick={() => setMenuOpen(false)}>Contato</Link>
+        {!user && (
+          <>
+            <Link to="/user_login" onClick={() => setMenuOpen(false)}>Login</Link>
+            <Link to="/user_cadastro" onClick={() => setMenuOpen(false)}>Cadastro</Link>
+          </>
+        )}
       </div>
     </nav>
   );

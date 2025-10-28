@@ -19,21 +19,26 @@
   text-decoration: none;
 }
 
-.menu_account {
+.menu_account, 
+.account-guest {
   justify-content: flex-end; /* coloca ícones no canto direito */
   gap: 1rem; /* espaço entre ícone da conta e menu */
 }
 
 .account-logged {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
 }
 
-.user-name {
+.user-name-link,
+.login-link, 
+.cadastro-link {
   font-size: 0.8rem;
   font-weight: 600 ;
   color: var(--color-text);
+  text-decoration: none;
+  margin: 0.2em;
 }
 
 .logo img {
@@ -45,8 +50,8 @@
   color: var(--color-text);
 }
 
-.menu_account img {
-  width: 40px;
+ .user img {
+  width: 30px;
   cursor: pointer;
   transition: opacity 0.2s ease;
 }
@@ -86,3 +91,15 @@
 .mobile-menu.open {
   display: flex;
 }
+
+.user{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icon-logout{
+  width: 20px;
+  height: 20px;
+}
+

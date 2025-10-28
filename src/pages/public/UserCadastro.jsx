@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PublicLayout from "../../layouts/PublicLayout";
 import NavBar from "../../components/NavBar/NavBar";
 import { ErrorBoundary } from "../../components/ErrorBoundary";
 import "../../styles/Account.css";
 import Footer from "../../components/Footer/Footer";
 import Input from "../../components/Inputs/Input";
+import PasswordInput from "../../components/Inputs/InpuPassword";
 import Button from "../../components/Buttons/Button";
-import { cadastrarUsuario } from "../../services/authService"; // importe a função de cadastro
+import { cadastrarUsuario } from "../../services/authService";
 
 export default function UserCadastro() {
   const [nome, setNome] = useState("");
@@ -16,8 +17,64 @@ export default function UserCadastro() {
   const [confirmarSenha, setConfirmarSenha] = useState("");
   const [mensagem, setMensagem] = useState("");
 
+  const [senhaValida, setSenhaValida] = useState({
+    comprimentoMin: false,
+    comprimentoMax: true,
+    numero: false,
+    especial: false,
+  });
+
+  const [senhaCoincide, setSenhaCoincide] = useState(null);
+  const [telefoneValido, setTelefoneValido] = useState(true);
+
+  // Validação da senha em tempo real
+  useEffect(() => {
+    setSenhaValida({
+      comprimentoMin: senha.length >= 8,
+      comprimentoMax: senha.length <= 12,
+      numero: /[0-9]/.test(senha),
+      especial: /[!@#$%^&*(),.?":{}|<>]/.test(senha),
+    });
+  }, [senha]);
+
+  // Validação de confirmação
+  useEffect(() => {
+    if (!confirmarSenha) setSenhaCoincide(null);
+    else setSenhaCoincide(senha === confirmarSenha);
+  }, [senha, confirmarSenha]);
+
+  // Validação de telefone
+  function validarTelefone(value) {
+    setTelefone(value);
+    const somenteNumeros = value.replace(/\D/g, "");
+    const valido = somenteNumeros.length >= 10 && somenteNumeros.length <= 11;
+    setTelefoneValido(valido);
+  }
+
   async function handleCadastro(e) {
     e.preventDefault();
+    setMensagem("");
+
+    if (
+      !senhaValida.comprimentoMin ||
+      !senhaValida.comprimentoMax ||
+      !senhaValida.numero ||
+      !senhaValida.especial
+    ) {
+      setMensagem("A senha não atende aos requisitos mínimos.");
+      return;
+    }
+
+    if (senha !== confirmarSenha) {
+      setMensagem("As senhas não coincidem.");
+      return;
+    }
+
+    if (!telefoneValido) {
+      setMensagem("Número de telefone inválido. Use apenas números (10 ou 11 dígitos).");
+      return;
+    }
+
     try {
       const resposta = await cadastrarUsuario({
         nome,
@@ -26,12 +83,11 @@ export default function UserCadastro() {
         telefone,
         papel: "CLIENTE",
       });
-      setMensagem(resposta); // mostra a mensagem do backend
+      setMensagem(resposta);
     } catch (err) {
       setMensagem(err.message);
     }
   }
-
 
   return (
     <PublicLayout>
@@ -55,24 +111,54 @@ export default function UserCadastro() {
             value={email}
             onChange={(value) => setEmail(value)}
           />
+
+          {/* Telefone */}
           <Input
-            type="number"
+            type="tel"
             text_label="Telefone"
             value={telefone}
-            onChange={(value) => setTelefone(value)}
+            onChange={(value) => validarTelefone(value)}
           />
-          <Input
-            type="password"
+          {!telefoneValido && (
+            <p className="erro">
+              O número deve conter apenas dígitos e ter entre 10 e 11 caracteres.
+            </p>
+          )}
+
+          {/* Senha */}
+          <PasswordInput
             text_label="Senha"
             value={senha}
             onChange={(value) => setSenha(value)}
           />
-          <Input
-            type="password"
+
+          {/* Requisitos visuais */}
+          <ul className="senha-requisitos">
+            <li className={senhaValida.comprimentoMin ? "ok" : "erro"}>
+              {senhaValida.comprimentoMin ? "✅" : "❌"} Mínimo de 8 caracteres
+            </li>
+            <li className={senhaValida.comprimentoMax ? "ok" : "erro"}>
+              {senhaValida.comprimentoMax ? "✅" : "❌"} Máximo de 12 caracteres
+            </li>
+            <li className={senhaValida.numero ? "ok" : "erro"}>
+              {senhaValida.numero ? "✅" : "❌"} Contém ao menos um número
+            </li>
+            <li className={senhaValida.especial ? "ok" : "erro"}>
+              {senhaValida.especial ? "✅" : "❌"} Contém caractere especial
+            </li>
+          </ul>
+
+          {/* Confirmar senha */}
+          <PasswordInput
             text_label="Confirmar senha"
             value={confirmarSenha}
             onChange={(value) => setConfirmarSenha(value)}
           />
+          {senhaCoincide !== null && (
+            <p className={senhaCoincide ? "ok" : "erro"}>
+              {senhaCoincide ? "✅ As senhas coincidem" : "❌ As senhas não coincidem"}
+            </p>
+          )}
 
           {mensagem && <p className="erro">{mensagem}</p>}
 
