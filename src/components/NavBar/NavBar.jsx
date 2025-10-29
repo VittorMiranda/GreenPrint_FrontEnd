@@ -40,7 +40,7 @@ export default function Navbar() {
           <div className="user">
             <img src={account} alt="" />
             <div className="account-logged">
-              <Link to="/perfil" className="user-name-link">{user.nome}</Link>
+              <Link to="/perfil" className="user-name-link" state={{ usuario: user }}>{user.nome}</Link>
               <img
                 src={logoutIcon}
                 alt="Sair"
@@ -70,9 +70,21 @@ export default function Navbar() {
       <div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
         <Link to="/" onClick={() => setMenuOpen(false)}>Início</Link>
         <Link to="/produto_list" onClick={() => setMenuOpen(false)}>Produtos</Link>
-        <Link to="/produto_cadastro" onClick={() => setMenuOpen(false)}>Cadastro Produtos</Link>
         <Link to="/contato" onClick={() => setMenuOpen(false)}>Contato</Link>
         <Link to="/sobre" onClick={() => setMenuOpen(false)}>Sobre</Link>
+        {/* Exibe apenas para funcionários e admins */}
+        {user && (user.papel === "FUNCIONARIO" || user.papel === "ADMINISTRADOR") && (
+          <Link to="/produto_cadastro" onClick={() => setMenuOpen(false)}>
+            Cadastro Produtos
+          </Link>
+        )}
+
+        {/* Exibe apenas para admins */}
+        {user && user.papel === "ADMINISTRADOR" && (
+          <Link to="/adm_roles" onClick={() => setMenuOpen(false)}>
+            Administração de Acesso 
+          </Link>
+        )}
         {!user && (
           <>
             <Link to="/user_login" onClick={() => setMenuOpen(false)}>Login</Link>

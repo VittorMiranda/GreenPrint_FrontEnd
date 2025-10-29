@@ -1,7 +1,7 @@
 import "./Input.css";
 import { useId } from "react";
 
-export default function Input({ type = "text", text_label, value, onChange, placeholder }) {
+export default function Input({ type = "text", text_label, value, onChange, placeholder, name }) {
   const id = useId(); // Gera um ID único e estável por instância
 
   const handleChange = (e) => {
@@ -14,6 +14,7 @@ export default function Input({ type = "text", text_label, value, onChange, plac
       <input
         id={id}
         type={type}
+        name={name}
         className="input"
         value={value}
         onChange={handleChange}

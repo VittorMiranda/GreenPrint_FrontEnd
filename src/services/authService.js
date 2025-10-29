@@ -44,6 +44,7 @@ export function getUsuario() {
     const decoded = jwt_decode(token);
 
     return {
+      id: decoded.id,
       nome: decoded.nome,
       papel: decoded.papel,
       email: decoded.sub, // 'sub' vem do JWT
@@ -122,5 +123,72 @@ export async function atualizarPapelUsuario(id, papel) {
   }
 }
 
+export async function buscarUsuarioAtual() {
+  const usuario = getUsuario();
+  if (!usuario) throw new Error("Usuário não autenticado");
 
+  const token = getToken();
+  try {
+    const response = await fetch(`${API_URL}/usuarios/${usuario.id}`, {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Erro ao buscar dados do usuário");
+    }
+
+    return await response.json(); // retorna DadosDetalheUsuario
+  } catch (error) {
+    console.error("Erro ao buscar usuário atual:", error);
+    throw error;
+  }
+}
+
+export async function atualizarUsuario(dados) {
+
+  const token = getToken();
+  try {
+    const response = await fetch(`${API_URL}/usuarios`, {
+      method: "PUT",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dados),
+    });
+
+    if (!response.ok) {
+      const erro = await response.text();
+      throw new Error(erro || "Erro ao atualizar usuário");
+    }
+
+    return await response.json(); // retorna DadosDetalheUsuario atualizado
+  } catch (error) {
+    console.error("Erro ao atualizar usuário:", error);
+    throw error;
+  }
+}
+
+export async function atualizarSenha(senhaAtual, novaSenha) {
+  const token = getToken();
+  const response = await fetch(`${API_URL}/usuarios/senha`, {
+    method: "PUT",
+    headers: {
+      "Authorization": `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ senhaAtual, novaSenha }),
+  });
+
+  if (!response.ok) {
+    const erro = await response.text();
+    throw new Error(erro || "Erro ao atualizar senha");
+  }
+
+  return await response.text(); // retorna mensagem de sucesso
+}
 
