@@ -8,7 +8,7 @@ import Input from "../../components/Inputs/Input";
 import InputPassword from "../../components/Inputs/InpuPassword";
 import acount from "../../assets/acount.svg";
 import Button from "../../components/Buttons/Button";
-import { buscarUsuarioAtual, atualizarUsuario } from "../../services/authService";
+import { buscarUsuarioAtual, atualizarUsuario, alterarSenha } from "../../services/authService";
 
 export default function Perfil() {
   const [usuario, setUsuario] = useState({
@@ -71,26 +71,17 @@ export default function Perfil() {
     }
   };
 
-  // Atualiza senha separadamente
-  const handleAtualizarSenha = async (e) => {
+  async function handleAtualizarSenha(e) {
     e.preventDefault();
-    if (!senhaAtual || !novaSenha) {
-      alert("Preencha os campos de senha.");
-      return;
-    }
     try {
-      const atualizado = await atualizarSenha({
-        senha: senhaAtual,
-        novaSenha: novaSenha,
-      });
+      const mensagem = await alterarSenha(senhaAtual, novaSenha);
+      alert(mensagem);
       setSenhaAtual("");
       setNovaSenha("");
-      alert("Senha atualizada com sucesso!");
     } catch (error) {
-      console.error("Erro ao atualizar senha:", error);
-      alert("Falha ao atualizar senha: " + error.message);
+      alert(error.message);
     }
-  };
+  }
 
   if (loading) return <p>Carregando...</p>;
 
@@ -148,7 +139,7 @@ export default function Perfil() {
             value={novaSenha}
             onChange={(e) => setNovaSenha(e.target.value)}
           />
-          <Button text="Alterar Senha" />
+          <Button text="Alterar Senha" type={"submit"}/>
         </form>
       </main>
 

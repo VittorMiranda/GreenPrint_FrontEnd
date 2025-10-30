@@ -13,7 +13,7 @@
     color: var(--color-verde-escuro);
 }
   
-.dados_pessoais {
+.dados_pessoais, .senha_form {
     width: 100%;
     margin: 1.5em 0;
     padding: 2em;

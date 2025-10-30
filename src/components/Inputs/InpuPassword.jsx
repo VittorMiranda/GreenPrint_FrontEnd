@@ -13,7 +13,7 @@ export default function PasswordInput({
   const [mostrar, setMostrar] = useState(false);
 
   const handleChange = (e) => {
-    if (onChange) onChange(e.target.value);
+    if (onChange) onChange(e);
   };
 
   return (

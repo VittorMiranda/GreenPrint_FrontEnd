@@ -173,22 +173,28 @@ export async function atualizarUsuario(dados) {
   }
 }
 
-export async function atualizarSenha(senhaAtual, novaSenha) {
-  const token = getToken();
-  const response = await fetch(`${API_URL}/usuarios/senha`, {
-    method: "PUT",
-    headers: {
-      "Authorization": `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ senhaAtual, novaSenha }),
-  });
+export async function alterarSenha(senhaAtual, novaSenha) {
+  try {
+    const token = getToken();
 
-  if (!response.ok) {
-    const erro = await response.text();
-    throw new Error(erro || "Erro ao atualizar senha");
+    const response = await fetch(`${API_URL}/usuarios/alterar-senha`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+      body: JSON.stringify({ senhaAtual, senhaNova: novaSenha })
+    });
+
+    if (!response.ok) {
+      const erroTexto = await response.text();
+      throw new Error(erroTexto || "Erro ao alterar senha");
+    }
+
+    return await response.text(); // "Senha alterada com sucesso!"
+  } catch (error) {
+    console.error("Erro ao alterar senha:", error);
+    throw error;
   }
-
-  return await response.text(); // retorna mensagem de sucesso
 }
 
