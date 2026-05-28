@@ -1,4 +1,4 @@
-A ideia desse projeto é o desenvolvimento de produtos atravez de embalagens de papelão, aumentando a vida util desse material, isso inclui o desenvolvimento de produtos para o seu pet onde quando o brinquedo for "estragado" podera simplesmento retornar ao ciclo de reciclagem, também é possivel desenvolver pequenos suportes e moveis sendo um material pet friendly, quando você enjoar dessa pesa de decoração ou seu pet destruir o novo brinquedo pode simplesmente reciclalo e ele entrará novamento no novo ciclo de vida. 
+A ideia deste projeto é desenvolver produtos a partir de embalagens de papelão, aumentando a vida útil desse material. Isso inclui a criação de produtos para o seu pet: quando o brinquedo estragar, ele poderá simplesmente retornar ao ciclo de reciclagem. Também é possível desenvolver pequenos suportes e móveis, utilizando um material que é pet friendly. Assim, quando você enjoar da peça de decoração ou o seu pet destruir o brinquedo, basta reciclá-lo para que ele entre novamente em um novo ciclo de vida. 
 
 # React + Vite
 
