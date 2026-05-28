@@ -1,3 +1,5 @@
+A ideia desse projeto é o desenvolvimento de produtos atravez de embalagens de papelão, aumentando a vida util desse material, isso inclui o desenvolvimento de produtos para o seu pet onde quando o brinquedo for "estragado" podera simplesmento retornar ao ciclo de reciclagem, também é possivel desenvolver pequenos suportes e moveis sendo um material pet friendly, quando você enjoar dessa pesa de decoração ou seu pet destruir o novo brinquedo pode simplesmente reciclalo e ele entrará novamento no novo ciclo de vida. 
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
